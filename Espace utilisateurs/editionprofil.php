@@ -54,28 +54,53 @@ if(isset($_SESSION['id']))
         <div class="edition">
             <h2>Edition de votre profil</h2>
                 <form method="POST" action="">
-                
+<table>
                     <div class="pseudo">
-                    <p>Pseudo:</p>
-                    <input type="text" name="newpseudo" placeholder="Pseudo" value="<?php echo $user['pseudo'];?>"/><br /><br />
+                    <tr>
+                        <td>
+                        <label>Pseudo:</label>
+                        </td>
+                        <td>
+                        <input type="text" name="newpseudo" placeholder="Pseudo" value="<?php echo $user['pseudo'];?>"/><br /><br />
+                        </td>
+                    </tr>
                     </div>
 
-                    <div class="email">
-                    <p>Mail:</p>
-                    <input type="text" name="newmail" placeholder="Mail" value="<?php echo $user['mail'];?>"/><br /><br />
+                    <div class="mail">
+                    <tr>
+                        <td>
+                        <label>Mail:</label>
+                        </td>
+                        <td>
+                        <input type="text" name="newmail" placeholder="Mail" value="<?php echo $user['mail'];?>"/><br /><br />
+                        </td>
+                    </tr>
                     </div>
 
-                    <div class="motdepasse">
-                    <p>Mot de passe:</p>
-                    <input type="password" name="newmdp1" placeholder="Mot de passe" /><br /><br />
+                    <div class="password"> 
+                    <tr>
+                        <td> 
+                        <label>Nouveau mot de passe:</label>
+                        </td>
+                        <td>
+                        <input type="password" name="newmdp1" placeholder="Mot de passe" /><br /><br />
+                        </td>
+                    </tr>
                     </div>
-
-                    <div class="motdepasse2">
-                    <p>Confirmation:</p>
-                    <input type="password" name="newmdp2" placeholder="Confirmation du mot de passe" /><br /><br />
+                   
+                    <div class="confirmation">
+                    <tr>
+                        <td>
+                        <label>Confirmation:</label>
+                        </td>
+                        <td>
+                        <input type="password" name="newmdp2" placeholder="Confirmation" /><br /><br />
+                        </td>
+                    </tr>
                     </div>
-
-                    <button type="submit" value ="Mettre à jour mon profil"></button>
+                    
+</table>
+                    <button type="submit" value ="Mettre à jour mon profil">Valider</button>
                     <br /><br />
                 
                 </form>
@@ -171,7 +196,7 @@ body {
 }
 
 h2 {
-    margin-top: 0;
+    margin-bottom: 30px;
     font-family:Arial, Helvetica, sans-serif;
     font-weight:lighter;
     color:black;
@@ -180,7 +205,8 @@ h2 {
 }
 
 input {
-    display: flex;
+    margin-top: 15px;
+    margin-left: 15px;
     width:200px;
     height:30px;
     background:white;
@@ -191,13 +217,10 @@ input {
     font-size:20px;
     border-radius: 5px;
     text-align: center;
-    justify-content: center;
-    align-items: center;
-   
 }
 
 button {
-    
+    margin-top: 30px;
     width:332px;
     height:50px;
     background: white;
@@ -209,41 +232,11 @@ button {
     font-size:20px;
 }
 
-.pseudo {
-    
+label {
+
     font-weight: lighter;
     color:black;
     font-family:Arial, Helvetica, sans-serif;
     font-size:20px;
-    display: flex;
-    align-items: center;
-
-}
-
-.email {
-    font-weight: lighter;
-    color:black;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:20px;
-    display: flex;
-    align-items: center;
-}
-
-.motdepasse {
-    font-weight: lighter;
-    color:black;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:20px;
-    display: flex;
-    align-items: center;
-}
-
-.motdepasse2 {
-    font-weight: lighter;
-    color:black;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:20px;
-    display: flex;
-    align-items: center;
 }
 </style>
