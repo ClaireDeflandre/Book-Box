@@ -33,6 +33,34 @@ if(isset($_SESSION['id']))
         header('Location: profil.php?id='.$_SESSION['id']);
     }
 
+     if(isset($_POST['newmdp1']) AND !empty($_POST['newmdp1']) AND $_POST['newmdp1'] != $user['motdepasse'])
+    {
+        $newmdp1 = htmlspecialchars($_POST['newmdp1']);
+        $newmdp2 = htmlspecialchars($_POST['newmdp2']);
+        $passwordvalid = !empty($newmdp1) && $password ===$newmdp2; 
+        $passwordhash = password_hash($newmdp1,PASSWORD_DEFAULT);
+
+        if($newmdp1 == $newmdp2)
+         {
+            try {
+                $database = new PDO("mysql:host=localhost;dbname=boitealivres;charset=utf8", "root", "");
+            } catch (Exception $err) {
+                die("Erreur:" . $err->getMessage());
+            }
+            $insertmdp = $bdd->prepare("UPDATE membres SET motdepasse = ? WHERE id = ? ");
+            $insertmdp->execute(array($passwordhash, $_SESSION['id']));
+            header('Location: profil.php?id='.$_SESSION['id']);
+             $erreur = "Votre compte a bien été modifié <a href=\"profil.php\">Voir mon profil</a>";
+            //header('Location: connexion.php');
+         }
+    }else
+                        {
+                            $erreur = "Les mots de passe doivent être identiques";
+                        }
+        
+                       
+                    
+
 ?>
 
 <html>
