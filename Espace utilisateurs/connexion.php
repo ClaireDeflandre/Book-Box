@@ -30,14 +30,14 @@ if(isset($_POST['formconnexion']))
             }
             else
             {
-                $erreur = "Mauvais mail ou mot de passe";
+                $message = "Mauvais mail ou mot de passe";
             }
         }
         
     }
     else
     {
-        $erreur = "Tous les champs doivent être complétés";
+        $message = "Tous les champs doivent être complétés";
     }
 }
 
@@ -59,32 +59,14 @@ if(isset($_POST['forgot']))
         <label class="logo">Pick and read</label>
         <ul>
             <li><a href="#">Accueil</a></li>
-            <li><a href="#">Chercher une boîte à livres</a></li>
-            <li><a href="#">Avez-vous découvert une boîte à livres ?</a></li>
+            <li><a href="#">Boîte à livres</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="#">Connexion</a></li>
+            <li><a href="inscription.php">Inscription</a></li>
         </ul>
    </nav>
 
 <div class="signin">
 
-<?php
-    if(isset($_GET['reg_err']))
-    {
-        $error = htmlspecialchars($_GET['reg_err']);
-
-        switch($error)
-        {
-            case 'success':
-                ?>
-                <div class="succes">
-                    <strong>Succès:</strong> inscription réussie !
-                </div>
-            <?php
-            break;
-        }
-    }
-    ?>
         
             <h2>Connexion</h2>
             <br /><br />
@@ -99,9 +81,9 @@ if(isset($_POST['forgot']))
             <br>
             <br>
             <?php
-            if(isset($erreur))
+            if(isset($message))
             {
-            echo '<font color="red">'.$erreur.'</font>'; 
+            echo '<font color="red">'.$message.'</font>'; 
             }
             ?>
 
