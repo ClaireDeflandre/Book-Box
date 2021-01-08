@@ -12,7 +12,7 @@ if(isset($_POST['forminscription']))
     if(!empty($_POST['pseudo']) AND !empty($_POST['mail']) AND !empty($_POST['mail2']) AND !empty($_POST['mdp']) AND !empty($_POST['mdp2']))
     { 
         $pseudolenght = strlen($pseudo);
-        if($pseudolenght<=255)
+        if($pseudolenght<=50)
         {
             if($mail == $mail2)
             {
@@ -78,7 +78,7 @@ if(isset($_POST['forminscription']))
             <li><a href="#">Chercher une boîte à livres</a></li>
             <li><a href="#">Avez-vous découvert une boîte à livres ?</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="#">Connexion</a></li>
+            <li><a href="connexion.php">Connexion</a></li>
         </ul>
    </nav>
 

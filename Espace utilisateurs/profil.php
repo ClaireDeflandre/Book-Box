@@ -21,10 +21,9 @@ if (isset($_GET['id']) AND $_GET['id'] > 0)
         <label class="logo">Pick and read</label>
         <ul>
             <li><a href="#">Accueil</a></li>
-            <li><a href="#">Chercher une boîte à livres</a></li>
-            <li><a href="#">Avez-vous découvert une boîte à livres ?</a></li>
+            <li><a href="#">Boîtes à livres</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="#">Connexion</a></li>
+            <li><a href="deconnexion.php">Déconnexion</a></li>
         </ul>
    </nav>
 

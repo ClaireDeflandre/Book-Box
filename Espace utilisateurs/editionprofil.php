@@ -7,60 +7,46 @@ if(isset($_SESSION['id']))
 {
     $requser = $bdd->prepare("SELECT * FROM membres WHERE id = ?");
     $requser->execute(array($_SESSION['id']));
-    $user = $requser->fetch();
+    $user = $requser->fetch(); 
 
     if(isset($_POST['newpseudo']) AND !empty($_POST['newpseudo']) AND $_POST['newpseudo'] != $user['pseudo'])
     {
         $newpseudo = htmlspecialchars($_POST['newpseudo']);
-        $insertpseudo = $bdd->prepare("UPDATE membres SET pseudo = ? WHERE id = ? ");
-        $insertpseudo->execute(array($newpseudo, $_SESSION['id']));
-        header('Location: profil.php?id='.$_SESSION['id']);
-    }
+        $pseudolenght = strlen($newpseudo);
 
-    if(isset($_POST['newmail']) AND !empty($_POST['newmail']) AND $_POST['newmail'] != $user['mail'])
-    {
-        $newmail = htmlspecialchars($_POST['newmail']);
-        $insertmail = $bdd->prepare("UPDATE membres SET mail = ? WHERE id = ? ");
-        $insertmail->execute(array($newmail, $_SESSION['id']));
-        header('Location: profil.php?id='.$_SESSION['id']);
-    }
+            if($pseudolenght<=50)
+            {
+                $insertpseudo = $bdd->prepare("UPDATE membres SET pseudo = ? WHERE id = ? ");
+                $insertpseudo->execute(array($newpseudo, $_SESSION['id']));
+                header('Location: profil.php?id='.$_SESSION['id']);
 
-    if(isset($_POST['newmail']) AND !empty($_POST['newmail']))
-    {
-        $newmail = htmlspecialchars($_POST['newmail']);
-        $insertmail = $bdd->prepare("UPDATE membres SET mail = ? WHERE id = ? ");
-        $insertmail->execute(array($newmail, $_SESSION['id']));
-        header('Location: profil.php?id='.$_SESSION['id']);
-    }
-
-     if(isset($_POST['newmdp1']) AND !empty($_POST['newmdp1']) AND $_POST['newmdp1'] != $user['motdepasse'])
-    {
-        $newmdp1 = htmlspecialchars($_POST['newmdp1']);
-        $newmdp2 = htmlspecialchars($_POST['newmdp2']);
-        $passwordvalid = !empty($newmdp1) && $password ===$newmdp2; 
-        $passwordhash = password_hash($newmdp1,PASSWORD_DEFAULT);
-
-        if($newmdp1 == $newmdp2)
-         {
-            try {
-                $database = new PDO("mysql:host=localhost;dbname=boitealivres;charset=utf8", "root", "");
-            } catch (Exception $err) {
-                die("Erreur:" . $err->getMessage());
-            }
-            $insertmdp = $bdd->prepare("UPDATE membres SET motdepasse = ? WHERE id = ? ");
-            $insertmdp->execute(array($passwordhash, $_SESSION['id']));
-            header('Location: profil.php?id='.$_SESSION['id']);
-             $erreur = "Votre compte a bien été modifié <a href=\"profil.php\">Voir mon profil</a>";
-            //header('Location: connexion.php');
-         }
-    }else
-                        {
-                            $erreur = "Les mots de passe doivent être identiques";
-                        }
-        
-                       
+                    if(isset($_POST['newmail']) AND !empty($_POST['newmail']) AND $_POST['newmail'] != $user['mail'])
+                    {
+                        $newmail = htmlspecialchars($_POST['newmail']);
+                        $insertmail = $bdd->prepare("UPDATE membres SET mail = ? WHERE id = ? ");
+                        $insertmail->execute(array($newmail, $_SESSION['id']));
+                        header('Location: profil.php?id='.$_SESSION['id']);
                     
-
+                        if(isset($_POST['newmdp1']) AND !empty($_POST['newmdp1']) AND $_POST['newmdp2'] != $user['motdepasse'])
+                        {
+                            if($newmdp1 === $newmdp2)
+                            {
+                                $newmdp1 = htmlspecialchars($_POST['newmdp1']);
+                                $newmdp2 = htmlspecialchars($_POST['newmdp2']);
+                                $passwordhash = password_hash($newmdp1,PASSWORD_DEFAULT);
+                                $insertmdp = $bdd->prepare("UPDATE membres SET motdepasse = ? WHERE id = ? ");
+                                $insertmdp->execute(array($passwordhash, $_SESSION['id']));
+                            }else{
+                                $message = "Les mots de passe doivent être identiques";
+                            }
+                        }
+                    }
+            }else{
+                $message = "Votre pseudo ne doit pas dépasser 50 caractères";
+            }
+    }
+}                     
+                
 ?>
 
 <html>
@@ -73,10 +59,9 @@ if(isset($_SESSION['id']))
         <label class="logo">Pick and read</label>
         <ul>
             <li><a href="#">Accueil</a></li>
-            <li><a href="#">Chercher une boîte à livres</a></li>
-            <li><a href="#">Avez-vous découvert une boîte à livres ?</a></li>
+            <li><a href="#">Boîtes à livres</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="#">Connexion</a></li>
+            <li><a href="deconnexion.php">Déconnexion</a></li>
         </ul>
    </nav>
         <div class="edition">
@@ -130,19 +115,19 @@ if(isset($_SESSION['id']))
 </table>
                     <button type="submit" value ="Mettre à jour mon profil">Valider</button>
                     <br /><br />
-                
                 </form>
+
+            <?php
+            if(isset($message))
+            {
+            echo '<font color="red">'.$message.'</font>'; 
+            }
+            ?>
         </div>
     </body>
 </html>  
 
-<?php
-}
-else
-{
-    header("Location: connexion.php");
-}
-?>
+
 
 <style>
 *{
