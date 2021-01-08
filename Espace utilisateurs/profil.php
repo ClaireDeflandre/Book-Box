@@ -27,25 +27,41 @@ if (isset($_GET['id']) AND $_GET['id'] > 0)
             <li><a href="#">Connexion</a></li>
         </ul>
    </nav>
-        <div class="profil">
-            <h2>Bienvenue sur votre profil <?php echo $userinfo['pseudo'];?></h2>
-            <br /><br />
-            <p class="pseudo">Votre pseudo = <?php echo $userinfo['pseudo'];?></p>
-            <br />
-            <p class="mail">Votre E-mail = <?php echo $userinfo['mail'];?></p>
-            
 
-            <br />
-            <?php
-            if(isset($_SESSION['id']) AND $userinfo['id'] == $_SESSION['id'])
-            {
-            ?>
-            <a class="edit" href="editionprofil.php">Editer mon profil</a>
-            <a class="deconnexion" href="deconnexion.php">Se déconnecter</a>
-            <?php
-            }
-            ?>
-        </div>
+    <div class="profil">
+    
+                <h2>Bienvenue sur votre profil <?php echo $userinfo['pseudo'];?></h2>
+    <table>            
+                
+            <tr>
+                <td>
+                <p class="pseudo">Votre pseudo est <?php echo $userinfo['pseudo'];?></p>
+                </td>
+            </tr>
+                <br />
+            <tr>
+                <td>
+                <p class="mail">Votre E-mail est <?php echo $userinfo['mail'];?></p>
+                </td>
+            </tr>
+        
+    </table> 
+                <br />
+                <?php
+                if(isset($_SESSION['id']) AND $userinfo['id'] == $_SESSION['id'])
+                {
+                ?>
+
+                <a class="edit" href="editionprofil.php">Editer mon profil</a>
+                
+                
+                <a class="deconnexion" href="deconnexion.php">Se déconnecter</a>
+                
+                <?php
+                }
+                ?>
+               
+    </div>
     </body>
 </html>  
 
@@ -122,7 +138,7 @@ body {
 
 .profil {
     border: 3px solid black;
-    border-radius:5px;
+    border-radius:15px;
     padding: 3em;
     position: absolute;
     top: 50%;
@@ -133,8 +149,7 @@ body {
 }
 
 h2 {
-    margin-top: 0;
-    margin-bottom:5px;
+    margin-bottom: 10px;
     font-family:Arial, Helvetica, sans-serif;
     font-weight:lighter;
     color:black;
@@ -144,8 +159,9 @@ h2 {
 
 p {
     display: flex;
-    width:320px;
+    width:400px;
     height:50px;
+    margin-top: 20px;
     background:white;
     outline:none;
     border: 2px solid rgba(0,0,0,0.5);
@@ -153,11 +169,9 @@ p {
     font-weight:lighter;
     font-size:20px;
     border-radius: 5px;
-    text-align: center;
     justify-content: center;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+
 }
 
 .edit {
@@ -172,5 +186,11 @@ p {
     font-size: 20px;
     font-weight: bold;
     margin-left: 10px;
+}
+
+table {
+    display: flex;
+    justify-content:center;
+    margin-bottom: 15px;
 }
 </style>

@@ -213,7 +213,7 @@ body {
 
 .edition {
     border: 3px solid black;
-    border-radius:5px;
+    border-radius:15px;
     padding: 3em;
     position: absolute;
     top: 60%;
@@ -235,7 +235,7 @@ h2 {
 input {
     margin-top: 15px;
     margin-left: 15px;
-    width:200px;
+    width:250px;
     height:30px;
     background:white;
     outline:none;
@@ -249,7 +249,7 @@ input {
 
 button {
     margin-top: 30px;
-    width:332px;
+    width:400px;
     height:50px;
     background: white;
     font-weight: lighter;

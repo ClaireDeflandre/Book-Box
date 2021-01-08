@@ -100,7 +100,7 @@ if(isset($_POST['forminscription']))
         }
     }
     ?>
-    <div align="center">
+    <div>
         <h2>Inscription</h2>
         <br /><br /><br />
         <form method="POST" action="">
@@ -206,7 +206,7 @@ body {
 
 .signup {
     border: 3px solid black;
-    border-radius:5px;
+    border-radius:15px;
     padding: 2em;
     position: absolute;
     top: 50%;
@@ -257,6 +257,7 @@ button {
     font-family:Arial, Helvetica, sans-serif;
     font-weight:lighter;
     font-size:20px;
+    margin-top: 30px;
 }
 
 </style>

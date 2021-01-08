@@ -180,7 +180,7 @@ body {
 
 .signin {
     border: 3px solid black;
-    border-radius:5px;
+    border-radius:15px;
     padding: 3em;
     position: absolute;
     top: 50%;
@@ -232,6 +232,7 @@ button {
     font-family:Arial, Helvetica, sans-serif;
     font-weight:lighter;
     font-size:20px;
+    margin-top: 30px;
 }
 
 </style>
